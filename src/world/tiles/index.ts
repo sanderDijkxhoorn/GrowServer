@@ -11,7 +11,7 @@ import { LockTile } from "./LockTile";
 import type { Base } from "../../core/Base";
 import { HeartMonitorTile } from "./HeartMonitorTile";
 import { DisplayBlockTile } from "./DisplayBlockTile";
-import { SwitcheROO } from "./SwitcheROO";
+import { SwitcheROO } from "./SwitcherOO";
 import { WeatherTile } from "./WeatherTile";
 import { DiceTile } from "./DiceTile";
 import { SeedTile } from "./SeedTile";
