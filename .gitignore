@@ -37,3 +37,4 @@ lerna-debug.log*
 *.sw?
 
 items_info_new.json
+/assets/cache
