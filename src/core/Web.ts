@@ -142,7 +142,7 @@ export async function Web(base: Base) {
   });
 
   app.use(
-    "/growtopia/cache",
+    "/growtopia/cache/*",
     serveStatic({
       root: relative(__dirname, join(__dirname, "assets", "cache"))
     })
