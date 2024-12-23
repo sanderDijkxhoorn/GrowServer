@@ -31,7 +31,7 @@ export class Input {
         else {
           const expireTime = cmdCd.time + cmd.opt.cooldown * 1000;
           const timeLeft = expireTime - Date.now();
-          if (cmdCd.limit >= cmd.opt.ratelimit) return this.peer.send(Variant.from("OnConsoleMessage", `\`6${this.peer.data?.tankIDName}\`0 you're being ratelimited, please wait \`9${timeLeft / 1000}s\`0`));
+          if (cmdCd.limit >= cmd.opt.ratelimit) return this.peer.send(Variant.from("OnConsoleMessage", `\`6${this.peer.data?.tankIDName}\`0 you're being rate limited, please wait \`9${timeLeft / 1000}s\`0`));
           cmdCd.limit += 1;
         }
 
@@ -40,7 +40,7 @@ export class Input {
         }, cmd.opt.cooldown || 0 * 1000);
 
         if (cmd.opt.permission.some((perm) => perm === this.peer.data?.role)) await cmd.execute();
-        else this.peer.send(Variant.from("OnConsoleMessage", "You dont have permission to use this command."));
+        else this.peer.send(Variant.from("OnConsoleMessage", "You don't have permission to use this command."));
 
         return;
       }
