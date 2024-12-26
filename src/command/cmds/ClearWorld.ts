@@ -13,7 +13,7 @@ export default class ClearWorld extends Command {
       description: "Clear a world",
       cooldown: 60 * 10,
       ratelimit: 1,
-      category: "`oBasic",
+      category: "`bDev",
       usage: "/clearworld",
       example: [],
       permission: [ROLE.DEVELOPER]
