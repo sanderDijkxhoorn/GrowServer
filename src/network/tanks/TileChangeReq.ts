@@ -205,6 +205,7 @@ export class TileChangeReq {
       case ActionTypes.SHEET_MUSIC:
       case ActionTypes.BEDROCK:
       case ActionTypes.LAVA:
+      case ActionTypes.DEADLY_BLOCK:
       case ActionTypes.PLATFORM:
       case ActionTypes.FOREGROUND:
       case ActionTypes.BACKGROUND: {

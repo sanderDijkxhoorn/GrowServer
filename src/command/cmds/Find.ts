@@ -13,10 +13,10 @@ export default class Find extends Command {
       description: "Find some items",
       cooldown: 5,
       ratelimit: 5,
-      category: "`oBasic",
+      category: "`bDev",
       usage: "/find <item_name?>",
       example: ["/find", "/find dirt"],
-      permission: [ROLE.BASIC, ROLE.SUPPORTER, ROLE.DEVELOPER]
+      permission: [ROLE.DEVELOPER]
     };
   }
 
