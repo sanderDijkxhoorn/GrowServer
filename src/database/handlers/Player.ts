@@ -8,6 +8,13 @@ import { PeerData } from "../../types/peer";
 export class PlayerDB {
   constructor(private db: LibSQLDatabase<Record<string, never>>) {}
 
+  public async find(id: number) {
+    const res = await this.db.select().from(players).where(eq(players.id, id)).limit(1).execute();
+
+    if (res.length) return res[0];
+    return undefined;
+  }
+
   public async get(name: string) {
     const res = await this.db.select().from(players).where(eq(players.name, name)).limit(1).execute();
 

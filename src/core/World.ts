@@ -1,5 +1,5 @@
 import { TankPacket, TextPacket, Variant } from "growtopia.js";
-import { Block, WorldData } from "../types";
+import { Block, WorldData, WorldOwnerData } from "../types";
 import { Base } from "./Base";
 import { PacketTypes, TankTypes, WORLD_SIZE, Y_END_DIRT, Y_LAVA_START, Y_START_DIRT } from "../Constants";
 import { Peer } from "./Peer";
@@ -95,7 +95,17 @@ ${peer.data.lastVisitedWorlds
   public async getData() {
     if (!this.base.cache.worlds.has(this.worldName)) {
       const world = await this.base.database.worlds.get(this.worldName);
+
       if (world) {
+        const owner = world.ownedBy ? await this.base.database.players.find(world.ownedBy) : null;
+        const owner_data: WorldOwnerData | undefined = owner
+          ? {
+              id: owner.id,
+              name: owner.name,
+              displayName: owner.display_name
+            }
+          : undefined;
+
         this.data = {
           name: world.name,
           width: world.width,
@@ -105,7 +115,7 @@ ${peer.data.lastVisitedWorlds
           playerCount: 0,
           jammers: [],
           dropped: world.dropped ? JSON.parse(world.dropped.toString()) : { uid: 0, items: [] },
-          owner: world.owner ? JSON.parse(world.owner.toString()) : null,
+          owner: owner_data,
           weatherId: world.weather_id || 41
         };
       } else {

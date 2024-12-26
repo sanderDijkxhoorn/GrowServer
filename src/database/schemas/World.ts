@@ -6,7 +6,6 @@ export const worlds = sqliteTable("worlds", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name", { length: 255 }).notNull(),
   ownedBy: integer("ownedBy"),
-  owner: blob("owner", { mode: "buffer" }),
   width: integer("width").notNull(),
   height: integer("height").notNull(),
   blocks: blob("blocks", { mode: "buffer" }),

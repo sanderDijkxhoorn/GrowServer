@@ -33,7 +33,6 @@ export class WorldDB {
       width: data.width,
       height: data.height,
       blocks: Buffer.from(JSON.stringify(data.blocks)),
-      owner: data.owner ? Buffer.from(JSON.stringify(data.owner)) : null,
       dropped: Buffer.from(JSON.stringify(data.dropped)),
       updated_at: new Date().toISOString().slice(0, 19).replace("T", " "),
       weather_id: data.weatherId
@@ -53,7 +52,6 @@ export class WorldDB {
         width: data.width,
         height: data.height,
         blocks: Buffer.from(JSON.stringify(data.blocks)),
-        owner: data.owner ? Buffer.from(JSON.stringify(data.owner)) : null,
         dropped: Buffer.from(JSON.stringify(data.dropped)),
         updated_at: new Date().toISOString().slice(0, 19).replace("T", " "),
         weather_id: data.weatherId
