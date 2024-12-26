@@ -125,9 +125,10 @@ export async function Web(base: Base) {
       // Check if password and confirm password match
       if (password !== confirmPassword) throw new Error("Password and Confirm Password does not match");
 
-      // Save player to databse using set function
+      // Save player to database
       await base.database.players.set(growId, password);
 
+      // Login user:
       const token = jwt.sign({ growId, password }, process.env.JWT_SECRET as string);
 
       if (!token) throw new Error("Unauthorized");
