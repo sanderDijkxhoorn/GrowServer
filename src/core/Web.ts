@@ -9,6 +9,7 @@ import consola from "consola";
 import jwt from "jsonwebtoken";
 import type { Base } from "./Base";
 import bcrypt from "bcryptjs";
+import { existsSync, writeFileSync, mkdirSync } from "fs";
 
 __dirname = process.cwd();
 const conf = JSON.parse(readFileSync(join(__dirname, "config.json"), "utf-8"));
@@ -152,17 +153,25 @@ export async function Web(base: Base) {
     return ctx.html(html);
   });
 
-  app.use(
-    "/growtopia/cache/*",
-    serveStatic({
-      root: relative(__dirname, join(__dirname, "assets", "cache"))
-    })
-  );
-
-  app.get("/growtopia/cache/*", (ctx, next) => {
+  app.get("/growtopia/cache/*", async (ctx) => {
     const route = ctx.req.url.split("/growtopia/cache/")[1];
     const url = `https://ubistatic-a.akamaihd.net/${base.cdn.uri}/cache/${route}`;
-    return ctx.redirect(url);
+    const root = relative(__dirname, join(__dirname, "assets", "cache"));
+    const filePath = join(root, route);
+
+    // Create directory if it doesn't exist
+    mkdirSync(filePath.split("/").slice(0, -1).join("/"), { recursive: true });
+
+    // Check if filePath file exists, if so serve it
+    if (!existsSync(filePath)) {
+      consola.debug(`Caching ${url} to ${filePath}`);
+      const response = await fetch(url);
+      const buffer = await response.arrayBuffer();
+      writeFileSync(filePath, Buffer.from(buffer));
+    }
+
+    const file = readFileSync(filePath);
+    return ctx.html(file.toString());
   });
 
   app.use(
