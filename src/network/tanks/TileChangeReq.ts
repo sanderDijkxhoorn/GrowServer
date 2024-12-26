@@ -38,17 +38,17 @@ export class TileChangeReq {
   }
 
   private checkOwner() {
-    if (this.world.data.owner) {
-      if (this.world.data.owner.id !== this.peer.data?.id_user) return false;
-      if (this.peer.data?.role !== ROLE.DEVELOPER) return false;
+    // Developer can do anything
+    if (this.peer.data?.role == ROLE.DEVELOPER) return true;
 
-      if (this.itemMeta.id === 242 && this.world.data.owner.id !== this.peer.data?.id_user) {
-        this.peer.send(Variant.from("OnTalkBubble", this.peer.data.netID, `\`#[\`0\`9World Locked by ${this.world.data.owner?.displayName}\`#]`));
-        return false;
-      }
+    // If there is no owner, they can do anything
+    if (!this.world.data.owner) return true;
 
-      return true;
-    } else return true;
+    // If the person is the owner of the world, they can do anything
+    if (this.world.data.owner?.id == this.peer.data?.id_user) return true;
+
+    // Otherwise, they can't do anything
+    return false;
   }
 
   private async onTileWrench() {
@@ -356,7 +356,7 @@ export class TileChangeReq {
       }
 
       default: {
-        consola.debug("Unknown block placing", this.block, placedItem);
+        consola.debug("Unknown block placing", this.block, placedItem, actionType);
         return false;
       }
     }
