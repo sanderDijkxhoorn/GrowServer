@@ -21,15 +21,6 @@ export default class Help extends Command {
     };
   }
 
-  private getRoleLevel(role: string): number {
-    const roleLevels = {
-      [ROLE.BASIC]: 1,
-      [ROLE.SUPPORTER]: 2,
-      [ROLE.DEVELOPER]: 3
-    };
-    return roleLevels[role] || 0;
-  }
-
   public async execute(): Promise<void> {
     if (this.args.length > 0) {
       let Class = CommandMap[this.args[0]];
@@ -51,7 +42,6 @@ export default class Help extends Command {
         .addQuickExit();
       return this.peer.send(Variant.from("OnDialogRequest", dialog.str()));
     }
-    const userRoleLevel = this.getRoleLevel(this.peer.data.role);
 
     // Filter and organize commands
     const commandsByCategory: Record<string, string[]> = {};
@@ -60,7 +50,7 @@ export default class Help extends Command {
       const cmd = new CommandClass(null, null, "", []);
 
       // Check if user has permission based on role hierarchy
-      const hasPermission = cmd.opt.permission.some((role) => this.getRoleLevel(role) <= userRoleLevel);
+      const hasPermission = cmd.opt.permission.some((role) => this.peer.hasPermission(role));
 
       if (hasPermission) {
         const category = cmd.opt.category || "Uncategorized";

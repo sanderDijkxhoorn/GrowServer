@@ -343,4 +343,12 @@ export class Peer extends OldPeer<PeerData> {
       this.send(Variant.from("OnConsoleMessage", itemInfo.func.rem));
     }
   }
+
+  public hasPermission(role: string): boolean {
+    const roleLevel = parseInt(role);
+    const userRoleLevel = parseInt(this.data.role);
+
+    // Check if user has permission based on role hierarchy
+    return userRoleLevel <= roleLevel;
+  }
 }

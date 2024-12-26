@@ -1,7 +1,7 @@
 import { type NonEmptyObject } from "type-fest";
 import { Base } from "../../core/Base";
 import { Peer } from "../../core/Peer";
-import { ActionTypes, LOCKS } from "../../Constants";
+import { ActionTypes, LOCKS, ROLE } from "../../Constants";
 import { Block, Lock } from "../../types";
 import { Floodfill } from "../../utils/FloodFill";
 import { World } from "../../core/World";
@@ -22,8 +22,7 @@ export class ConfirmClearWorld {
   }
 
   public async execute(): Promise<void> {
-    if (this.world.data.owner) {
-      if (this.world.data.owner.id !== this.peer.data.id_user) return;
+    if (this.peer.hasPermission(ROLE.DEVELOPER)) {
       for (let i = 0; i < this.world.data.blocks.length; i++) {
         const b = this.world.data.blocks[i];
         const itemMeta = this.base.items.metadata.items[b.fg || b.bg];
@@ -45,8 +44,8 @@ export class ConfirmClearWorld {
 
       this.peer.every((p) => {
         if (p.data.world === this.peer.data.world && p.data.world !== "EXIT") {
-          p.leaveWorld();
-          // p.enterWorld(lastWorld);
+          // Rejoin world
+          p.enterWorld(this.world.data.name);
         }
       });
     }

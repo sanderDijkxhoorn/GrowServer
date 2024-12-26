@@ -16,18 +16,12 @@ export default class ClearWorld extends Command {
       category: "`oBasic",
       usage: "/clearworld",
       example: [],
-      permission: [ROLE.BASIC, ROLE.SUPPORTER, ROLE.DEVELOPER]
+      permission: [ROLE.DEVELOPER]
     };
   }
 
   public async execute(): Promise<void> {
-    const world = this.peer.currentWorld();
-
-    if (world?.data.owner) {
-      if (world?.data.owner.id !== this.peer.data.id_user) return;
-      const dialog = new DialogBuilder().addLabelWithIcon("Warning", "1432", "big").addTextBox("This will clear everything on your world, including your building. Are you sure?").endDialog("confirm_clearworld", "Nevermind", "Yes");
-
-      this.peer.send(Variant.from("OnDialogRequest", dialog.str()));
-    }
+    const dialog = new DialogBuilder().addLabelWithIcon("Warning", "1432", "big").addTextBox("This will clear everything on your world, including your building. Are you sure?").endDialog("confirm_clearworld", "Nevermind", "Yes");
+    this.peer.send(Variant.from("OnDialogRequest", dialog.str()));
   }
 }
