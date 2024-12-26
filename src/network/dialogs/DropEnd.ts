@@ -27,6 +27,11 @@ export class DropEnd {
       return;
     }
 
+    if (itemID === 18 || itemID === 32) {
+      this.peer.send(Variant.from("OnTalkBubble", this.peer.data.netID, "You can't drop this item."));
+      return;
+    }
+
     if (count > itemExist.amount) {
       this.peer.send(Variant.from("OnTalkBubble", this.peer.data.netID, "Really?"));
       return;
