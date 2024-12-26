@@ -11,6 +11,12 @@ export class Drop {
     const itemID = parseInt(action.itemID);
     const item = this.base.items.metadata.items.find((v) => v.id === itemID);
 
+    // Make sure the item is not fist or wrench
+    if (!item || itemID === 18 || itemID === 32) {
+      this.peer.send(Variant.from("OnTalkBubble", this.peer.data.netID, "You can't drop this item."));
+      return;
+    }
+
     const peerItem = this.peer.data.inventory.items.find((v) => v.id === itemID);
     const dialog = new DialogBuilder()
       .defaultColor()
