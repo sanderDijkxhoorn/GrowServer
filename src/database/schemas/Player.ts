@@ -14,6 +14,7 @@ export const players = sqliteTable("players", {
   clothing: blob("clothing", { mode: "buffer" }),
   inventory: blob("inventory", { mode: "buffer" }),
   last_visited_worlds: blob("last_visited_worlds", { mode: "buffer" }),
+  hidden: integer("hidden").default(0),
   created_at: text("created_at").default(sql`(current_timestamp)`),
   updated_at: text("updated_at").default(sql`(current_timestamp)`)
 });

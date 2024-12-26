@@ -38,7 +38,6 @@ export class PlayerDB {
 
   public async save(data: PeerData) {
     if (!data.id_user) return false;
-
     const res = await this.db
       .update(players)
       .set({
@@ -49,6 +48,7 @@ export class PlayerDB {
         level: data.level,
         exp: data.exp,
         last_visited_worlds: Buffer.from(JSON.stringify(data.lastVisitedWorlds)),
+        hidden: data.hidden ? 1 : 0,
         updated_at: new Date().toISOString().slice(0, 19).replace("T", " ")
       })
       .where(eq(players.id, parseInt(data.id_user as string)))

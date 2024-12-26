@@ -162,13 +162,13 @@ export class Base {
     }
   }
 
-  public async savePlayers(disconenctAll: boolean) {
+  public async savePlayers(disconnectAll: boolean) {
     try {
       let savedCount = 0;
       for (const [_, peer] of this.cache.peers) {
         const player = new Peer(this, peer.netID);
         await player.saveToDatabase();
-        if (disconenctAll) {
+        if (disconnectAll) {
           player.disconnect("now");
         }
         savedCount++;
@@ -185,5 +185,9 @@ export class Base {
     consola.info("Shutting down server...");
     await this.saveAll(true);
     process.exit(0);
+  }
+
+  public getOnlinePlayers(): number {
+    return this.cache.peers.filter((peer) => peer.id_user && !peer.hidden).length;
   }
 }

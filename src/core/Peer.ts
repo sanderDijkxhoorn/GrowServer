@@ -32,7 +32,8 @@ export class Peer extends OldPeer<PeerData> {
         level: data.level,
         lastCheckpoint: data.lastCheckpoint,
         lastVisitedWorlds: data.lastVisitedWorlds,
-        state: data.state
+        state: data.state,
+        hidden: data.hidden
       };
   }
 

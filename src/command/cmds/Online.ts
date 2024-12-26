@@ -20,8 +20,6 @@ export default class Online extends Command {
   }
 
   public async execute(): Promise<void> {
-    // Not sure what the best way is to get only actual online players so for now check if id_user is available
-    const onlinePlayers = this.base.cache.peers.filter((peer) => peer.id_user);
-    this.peer.send(Variant.from("OnConsoleMessage", `Total online players: ${onlinePlayers.length}`));
+    this.peer.send(Variant.from("OnConsoleMessage", `Total online players: ${this.base.getOnlinePlayers()}`));
   }
 }

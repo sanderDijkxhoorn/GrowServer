@@ -162,6 +162,7 @@ export class ITextPacket {
           resetStateAt: 0
         }
       };
+      this.peer.data.hidden = player.hidden == 1 ? true : false;
 
       // Load Gems
       this.peer.send(Variant.from("OnSetBux", this.peer.data.gems));

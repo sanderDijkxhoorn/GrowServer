@@ -18,6 +18,7 @@ export interface PeerData {
   lastCheckpoint?: CheckPoint;
   lastVisitedWorlds?: string[];
   state: PeerState;
+  hidden: boolean;
 }
 
 export interface PeerState {
