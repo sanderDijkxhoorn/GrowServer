@@ -40,7 +40,8 @@ export class Input {
         }, cmd.opt.cooldown || 0 * 1000);
 
         if (cmd.opt.permission.some((perm) => perm === this.peer.data?.role)) await cmd.execute();
-        else this.peer.send(Variant.from("OnConsoleMessage", "You don't have permission to use this command."));
+        else throw new Error(`User ${this.peer.data?.tankIDName} tried to run unauthorized command ${commandName}`);
+        // this.peer.send(Variant.from("OnConsoleMessage", "You don't have permission to use this command."));
 
         return;
       }
