@@ -5,4 +5,5 @@ COPY bun.lockb ./
 COPY . ./
 
 RUN bun install
-CMD ["bun", "run", "dev"]
+# CMD ["bun", "run", "dev"]
+RUN bun run dev
