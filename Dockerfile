@@ -1,9 +1,17 @@
 FROM oven/bun:latest
 
-COPY package.json ./
-COPY bun.lockb ./
-COPY . ./
+# Create app directory
+# COPY package.json ./
+# COPY bun.lockb ./
+COPY . .
 
-RUN bun install
-# CMD ["bun", "run", "dev"]
-RUN bun run dev
+# Install dependencies
+# RUN bun install 
+RUN bun install --production
+
+# Expose ports
+EXPOSE 17091 80 8080 443
+
+# Run the app
+# RUN bun run dev
+CMD ["bun", "run", "dev"]
