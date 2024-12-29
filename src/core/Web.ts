@@ -185,7 +185,8 @@ export async function Web(base: Base) {
   serve(
     {
       fetch: app.fetch,
-      port: 80
+      // port: 80
+      port: 3000
     },
     (info) => {
       consola.log(`⛅ Running HTTP server on http://localhost`);
@@ -195,7 +196,8 @@ export async function Web(base: Base) {
   serve(
     {
       fetch: app.fetch,
-      port: 443,
+      // port: 443,
+      port: 3001,
       createServer,
       serverOptions: {
         key: readFileSync(join(__dirname, "assets", "ssl", "server.key")),
