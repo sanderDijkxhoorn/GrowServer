@@ -72,8 +72,8 @@ $ npm run mkcert:setup
 For the hosts file you can see this example below
 
 ```
-127.0.0.1 www.growtopia1.com
-127.0.0.1 www.growtopia2.com
+141.148.232.121 www.growtopia1.com
+141.148.232.121 www.growtopia2.com
 ```
 
 ## Contributing

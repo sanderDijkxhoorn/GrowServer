@@ -39,7 +39,7 @@ export class ITextPacket {
 
   private async invalidInfoResponse() {
     this.peer.send(Variant.from("OnConsoleMessage", "`4Failed`` logging in to that account. Please make sure you've provided the correct info."));
-    this.peer.send(TextPacket.from(PacketTypes.ACTION, "action|set_url", "url||http://127.0.0.1/recover", "label|`$Recover your Password``"));
+    this.peer.send(TextPacket.from(PacketTypes.ACTION, "action|set_url", "url||http://TODO/recover", "label|`$Recover your Password``"));
     this.peer.disconnect();
   }
 
