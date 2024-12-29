@@ -12,8 +12,8 @@ data.db
 data
 
 # Ignore ssl
-assets/ssl/_wildcard.growserver.app.pem
-assets/ssl/_wildcard.growserver.app-key.pem
+assets/ssl/_wildcard.zyki.net.pem
+assets/ssl/_wildcard.zyki.net-key.pem
 
 # Logs
 logs

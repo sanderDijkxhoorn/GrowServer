@@ -68,7 +68,7 @@ export async function setupMkcert() {
 
   consola.info("Setup mkcert certificate");
   try {
-    execSync(`${mkcertExecuteable} -install && cd ${join(__dirname, ".cache", "ssl")} && ${mkcertExecuteable} *.growserver.app`, { stdio: "ignore" });
+    execSync(`${mkcertExecuteable} -install && cd ${join(__dirname, ".cache", "ssl")} && ${mkcertExecuteable} *.zyki.net`, { stdio: "ignore" });
   } catch (e) {
     consola.error("Something wrong when setup mkcert", e);
   }

@@ -213,8 +213,8 @@ export async function Web(base: Base) {
       port: 8080,
       createServer,
       serverOptions: {
-        key: readFileSync(join(__dirname, ".cache", "ssl", "_wildcard.growserver.app-key.pem")),
-        cert: readFileSync(join(__dirname, ".cache", "ssl", "_wildcard.growserver.app.pem"))
+        key: readFileSync(join(__dirname, ".cache", "ssl", "_wildcard.zyki.net-key.pem")),
+        cert: readFileSync(join(__dirname, ".cache", "ssl", "_wildcard.zyki.net.pem"))
       }
     },
     (info) => {

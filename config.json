@@ -3,7 +3,7 @@
     "development": true,
     "address": "127.0.0.1",
     "ports": [17091],
-    "loginUrl": "login.growserver.app:8080",
+    "loginUrl": "growserver.zyki.net",
     "maintenance": {
       "enable": false,
       "message": "Maintenance Woi"
