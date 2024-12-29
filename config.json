@@ -2,7 +2,7 @@
   "web": {
     "development": true,
     "address": "141.148.232.121",
-    "ports": [17092],
+    "ports": [17091],
     "loginUrl": "growserver.zyki.net",
     "maintenance": {
       "enable": false,

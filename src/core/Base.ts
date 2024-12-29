@@ -28,11 +28,9 @@ export class Base {
   public database: Database;
 
   constructor() {
-    this.config = JSON.parse(fs.readFileSync(join(__dirname, "config.json"), "utf-8"));
     this.server = new Client({
       enet: {
-        ip: "0.0.0.0",
-        port: this.config.web.ports[Math.floor(Math.random() * this.config.web.ports.length)] || 17091
+        ip: "0.0.0.0"
       }
     });
     this.items = {
@@ -43,6 +41,7 @@ export class Base {
       wiki: [] as ItemsInfo[]
     };
     this.package = JSON.parse(fs.readFileSync(join(__dirname, "package.json"), "utf-8"));
+    this.config = JSON.parse(fs.readFileSync(join(__dirname, "config.json"), "utf-8"));
     this.cdn = { version: "", uri: "0000/0000" };
     this.cache = {
       peers: new Collection(),
